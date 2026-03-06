@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ガチャゲーム</title>
+
+<style>
+body{
+    font-family: sans-serif;
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    color:white;
+    text-align:center;
+    padding:40px;
+}
+
+h1{
+    font-size:40px;
+}
+
+#gachaButton{
+    font-size:24px;
+    padding:15px 40px;
+    border:none;
+    border-radius:10px;
+    background:gold;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+#gachaButton:hover{
+    transform:scale(1.1);
+}
+
+#result{
+    margin-top:40px;
+    font-size:28px;
+}
+
+.card{
+    margin-top:20px;
+    padding:30px;
+    border-radius:15px;
+    display:inline-block;
+    min-width:250px;
+}
+
+.star1{background:#777;}
+.star2{background:#3fa9f5;}
+.star3{background:#2ecc71;}
+.star4{background:#9b59b6;}
+.star5{
+    background:linear-gradient(45deg,gold,orange);
+    color:black;
+    font-weight:bold;
+}
+.star6{
+    background:linear-gradient(45deg,gold,#f8b500);
+    color:black;
+    font-weight:bold;
+    box-shadow:0 0 20px gold;
+}
+</style>
+
+</head>
+<body>
+
+<h1>✨ガチャゲーム✨</h1>
+
+<button id="gachaButton">ガチャを引く</button>
+
+<div id="result"></div>
+
+<script>
+
+const characters = [
+{ name:"スライム", rarity:1 },
+{ name:"村人", rarity:1 },
+{ name:"オーラノイド",rarity:1},
+
+{ name:"兵士", rarity:2 },
+{ name:"弓使い", rarity:2 },
+
+{ name:"魔法使い", rarity:3 },
+{ name:"騎士", rarity:3 },
+
+{ name:"ドラゴン", rarity:4 },
+{ name:"魔王の部下", rarity:4 },
+
+{ name:"勇者", rarity:5 },
+{ name:"伝説の竜", rarity:5 },
+
+{ name:"ネオン・ラッシュビート"、rarity:6}
+];
+
+function gacha(){
+
+let rand = Math.random()*100;
+let rarity;
+
+if(rand < 40) rarity = 1;
+else if(rand < 65) rarity = 2;
+else if(rand < 85) rarity = 3;
+else if(rand < 93) rarity = 4;
+else if(rand < 98) rarity = 5;
+else rarity = 6;
+
+let pool = characters.filter(c => c.rarity === rarity);
+let result = pool[Math.floor(Math.random()*pool.length)];
+
+document.getElementById("result").innerHTML =
+`<div class="card star${rarity}">
+★${rarity}<br>
+${result.name}
+</div>`;
+}
+
+document.getElementById("gachaButton").addEventListener("click", gacha);
+
+</script>
+
+</body>
+</html>
