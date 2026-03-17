@@ -118,7 +118,7 @@ let pool = characters.filter(c => c.rarity === rarity);
 let result = pool[Math.floor(Math.random()*pool.length)];
 
 document.getElementById("result").innerHTML =
-`<div class="card star${rarity}">
+`<div class="card star${rarity} ${result.type !== undefined ? "type"+result.type : ""}">
 ★${rarity}<br>
 ${result.name}
 </div>`;
